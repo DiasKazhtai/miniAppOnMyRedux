@@ -10,7 +10,13 @@ const async = document.getElementById('async')
 
 const store = createStore(rootReducer, 0)
 
-
+function logger (state){
+    return function (next){
+        return function (action){
+            return next(action)
+        }
+    }
+}
 
 addBtn.addEventListener('click', () => {
     store.dispatch({type: 'ADD'})
@@ -21,6 +27,7 @@ subBtn.addEventListener('click', () => {
  })
 
  async.addEventListener('click', () => {
+     store.dispatch({type: 'ASYNC'})
  })
 
  theme.addEventListener('click', () => {
